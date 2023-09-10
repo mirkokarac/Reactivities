@@ -18,7 +18,7 @@ public static class IdentityServiceExtensions
         })
         .AddEntityFrameworkStores<DataContext>();
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KjJxzscwdsjT8v3Ep3m0a4xgDJMuVc8TxE6DmMGYXQTiNrXzaAPUGhmdu0ueww3PsP"));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(opt =>
