@@ -22,4 +22,11 @@ export default class UserStore {
         router.navigate('/activities')
 
     }
+
+    logout = () => {
+        store.commonStore.setToken(null);
+        localStorage.removeItem('jwt');
+        this.user = null;
+        router.navigate('/');
+    }
 }
