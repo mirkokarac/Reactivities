@@ -16,9 +16,9 @@ export default observer(function HomePage() {
             style={{ marginBottom: 12 }}
           />
         </Header>
+        <Header as="h2" inverted content="Reactivities" />
         {userStore.isLoggedIn ? (
           <>
-            <Header as="h2" inverted content="Welcome to Reactivities" />
             <Button as={Link} to="/activities" size="huge" inverted>
               Go to Activities!
             </Button>
