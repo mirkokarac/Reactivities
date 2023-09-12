@@ -37,4 +37,10 @@ public class ActivitiesController : BaseApiController
     {
         return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
     }
+
+    [HttpPost("{id}/attend")]
+    public async Task<IActionResult> UpdateAttendance(Guid id)
+    {
+        return HandleResult(await Mediator.Send(new UpdateAttendance.Command { Id = id }));
+    }
 }
