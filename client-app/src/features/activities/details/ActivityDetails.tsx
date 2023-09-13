@@ -10,27 +10,30 @@ import ActivityDetailedChat from "./ActivityDetailedChat";
 import ActivityDetailedSidebar from "./ActivityDetailedSidebar";
 
 export default observer(function ActivityDetails() {
-    const { activityStore } = useStore();
-    const { selectedActivity: activity,
-        loadActivity, loadingInitial } = activityStore;
-    const { id } = useParams();
-    
-    useEffect(() => {
-        if (id) loadActivity(id);
-    }, [id, loadActivity]);
-    
-    if (loadingInitial || !activity) return <LoadingComponent />;
+  const { activityStore } = useStore();
+  const {
+    selectedActivity: activity,
+    loadActivity,
+    loadingInitial,
+  } = activityStore;
+  const { id } = useParams();
 
-    return (
-        <Grid>
-            <Grid.Column width={10}>
-                <ActivityDetailedHeader activity={activity} />
-                <ActivityDetailsInfo activity={activity} />
-                <ActivityDetailedChat />
-            </Grid.Column>
-            <Grid.Column width={6}>
-                <ActivityDetailedSidebar />
-            </Grid.Column>            
-        </Grid>
-    )
-})
+  useEffect(() => {
+    if (id) loadActivity(id);
+  }, [id, loadActivity]);
+
+  if (loadingInitial || !activity) return <LoadingComponent />;
+
+  return (
+    <Grid>
+      <Grid.Column width={10}>
+        <ActivityDetailedHeader activity={activity} />
+        <ActivityDetailsInfo activity={activity} />
+        <ActivityDetailedChat />
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <ActivityDetailedSidebar attendees={activity.attendees!} />
+      </Grid.Column>
+    </Grid>
+  );
+});
