@@ -38,6 +38,7 @@ public static class ApplicationServiceExtensions
         services.AddHttpContextAccessor();
         services.AddScoped<IUserAccessor, UserAccessor>();
         services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+        services.AddScoped<IPhotoAccessor, PhotoAccessor>();
 
         return services;
     }
