@@ -2,9 +2,9 @@ import { Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import { Button } from "semantic-ui-react";
 import * as Yup from "yup";
-import { useStore } from "../../../app/stores/store";
-import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextArea from "../../../app/common/form/MyTextArea";
+import { useStore } from "../../app/stores/store";
+import MyTextInput from "../../app/common/form/MyTextInput";
+import MyTextArea from "../../app/common/form/MyTextArea";
 interface Props {
   setEditMode: (editMode: boolean) => void;
 }

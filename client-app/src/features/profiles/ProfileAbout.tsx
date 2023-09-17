@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Grid, Header, Tab } from "semantic-ui-react";
 import ProfileEditForm from "./ProfileEditForm";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../app/stores/store";
+import { useStore } from "../../app/stores/store";
 export default observer(function ProfileAbout() {
   const { profileStore } = useStore();
   const { isCurrentUser, profile } = profileStore;

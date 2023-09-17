@@ -8,7 +8,7 @@ import {
   Segment,
   Statistic,
 } from "semantic-ui-react";
-import { Profile } from "../../../app/models/profile";
+import { Profile } from "../../app/models/profile";
 import { observer } from "mobx-react-lite";
 
 interface Props {

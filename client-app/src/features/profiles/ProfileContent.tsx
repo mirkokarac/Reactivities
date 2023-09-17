@@ -1,6 +1,6 @@
 import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
-import { Profile } from "../../../app/models/profile";
+import { Profile } from "../../app/models/profile";
 import { observer } from "mobx-react-lite";
 import ProfileAbout from "./ProfileAbout";
 
