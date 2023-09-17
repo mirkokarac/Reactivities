@@ -17,7 +17,7 @@ export default class ProfileStore {
         if (store.userStore.user && this.profile) {
             return store.userStore.user.username === this.profile.username;
         }
-        
+
         return false;
     }
 
@@ -37,7 +37,7 @@ export default class ProfileStore {
         }
     }
 
-    uploadPhoto =async (file: Blob) => {
+    uploadPhoto = async (file: Blob) => {
         this.uploading = true;
         try {
             const response = await agent.Profiles.uploadPhoto(file);
@@ -62,7 +62,7 @@ export default class ProfileStore {
         }
     }
 
-    setMainPhoto =async (photo:Photo) => {
+    setMainPhoto = async (photo: Photo) => {
         this.loading = true;
 
         try {
@@ -102,6 +102,24 @@ export default class ProfileStore {
         } catch (error) {
             console.log(error);
 
+            runInAction(() => this.loading = false);
+        }
+    }
+
+    updateProfile = async (profile: Partial<Profile>) => {
+        this.loading = true;
+        try {
+            await agent.Profiles.updateProfile(profile);
+            runInAction(() => {
+                if (profile.displayName && profile.displayName !==
+                    store.userStore.user?.displayName) {
+                    store.userStore.setDisplayName(profile.displayName);
+                }
+                this.profile = { ...this.profile, ...profile as Profile };
+                this.loading = false;
+            })
+        } catch (error) {
+            console.log(error);
             runInAction(() => this.loading = false);
         }
     }
