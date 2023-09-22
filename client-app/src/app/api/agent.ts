@@ -37,16 +37,16 @@ axios.interceptors.response.use(async response => {
             } else {
                 toast.error(data);
             }
-            break;    
+            break;
         case 401:
             toast.error('unauthorised');
-            break;    
+            break;
         case 403:
             toast.error('forbidden');
-            break;    
+            break;
         case 404:
             router.navigate('/not-found');
-            break;  
+            break;
         case 500:
             store.commonStore.setServerError(data);
             router.navigate('/server-error');
@@ -58,7 +58,7 @@ axios.interceptors.response.use(async response => {
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
-const responseBody = <T> (response: AxiosResponse<T>) => response.data;
+const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 axios.interceptors.request.use(config => {
     const token = store.commonStore.token;
@@ -69,10 +69,10 @@ axios.interceptors.request.use(config => {
 })
 
 const requests = {
-    get: <T> (url: string) => axios.get<T>(url).then(responseBody),
-    post: <T> (url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
-    put: <T> (url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-    del: <T> (url: string) => axios.delete<T>(url).then(responseBody)
+    get: <T>(url: string) => axios.get<T>(url).then(responseBody),
+    post: <T>(url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
+    put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
+    del: <T>(url: string) => axios.delete<T>(url).then(responseBody)
 }
 
 const Activities = {
@@ -97,12 +97,13 @@ const Profiles = {
         formData.append('File', file);
 
         return axios.post<Photo>('photos', formData, {
-            headers: {'Content-Type' : 'multipart/form-data'}
+            headers: { 'Content-Type': 'multipart/form-data' }
         });
     },
     setMainPhoto: (id: string) => requests.put(`/photos/${id}/setMain`, {}),
     deletePhoto: (id: string) => requests.del(`/photos/${id}`,),
-    updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`, profile)
+    updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`, profile),
+    updateFollowing: (username: string) => requests.post(`/follow/${username}`, {})
 }
 
 
