@@ -31,12 +31,13 @@ public class List
             CancellationToken cancellationToken)
         {
             var query = _context.Activities
+                .OrderBy(d => d.Date)
                 .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
                     new { currentUsername = _userAccessor.GetUserName() })
                 .AsQueryable();
 
             return Result<PagedList<ActivityDto>>.Success(
-                await PagedList<ActivityDto>.CreateAsync(query, request.Params.PageNumber, 
+                await PagedList<ActivityDto>.CreateAsync(query, request.Params.PageNumber,
                     request.Params.PageSize)
             );
         }
