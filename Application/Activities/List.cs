@@ -37,13 +37,13 @@ public class List
                     new { currentUsername = _userAccessor.GetUserName() })
                 .AsQueryable();
 
-            if (request.Params.IsGoing && !request.Params.IsHost)
+            if (request.Params.IsGoing && !request.Params.IsHosting)
             {
                 query = query.Where(x => x.Attendees
                     .Any(a => a.Username == _userAccessor.GetUserName()));
             }
 
-            if (request.Params.IsHost && !request.Params.IsGoing)
+            if (request.Params.IsHosting && !request.Params.IsGoing)
             {
                 query = query.Where(x => x.HostUsername == _userAccessor.GetUserName());
             }
