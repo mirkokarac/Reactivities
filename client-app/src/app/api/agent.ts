@@ -14,7 +14,6 @@ const sleep = (delay: number) => {
 }
 
 axios.interceptors.response.use(async response => {
-    console.log(import.meta.env.DEV)
     if (import.meta.env.DEV) await sleep(1000);
 
     const pagination = response.headers['pagination'];
