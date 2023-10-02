@@ -76,8 +76,8 @@ public static class ApplicationServiceExtensions
         services.AddValidatorsFromAssemblyContaining<Create>();
         services.AddHttpContextAccessor();
         services.AddScoped<IUserAccessor, UserAccessor>();
-        services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
         services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+        services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
         services.AddSignalR();
 
         return services;
